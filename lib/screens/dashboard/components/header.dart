@@ -16,14 +16,10 @@ class Header extends StatelessWidget {
       children: [
         if (!Responsive.isDesktop(context))
           IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: context.read<MenuController>().controlMenu
-          ),
+              icon: const Icon(Icons.menu),
+              onPressed: context.read<MenuControllers>().controlMenu),
         if (!Responsive.isMobile(context))
-          Text(
-            'Dashboard',
-            style: Theme.of(context).textTheme.headline6
-          ),
+          Text('Dashboard', style: Theme.of(context).textTheme.headline6),
         if (!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
         const Expanded(child: SearchField()),
@@ -42,22 +38,22 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: defaultPadding),
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding/2),
+      padding: const EdgeInsets.symmetric(
+          horizontal: defaultPadding, vertical: defaultPadding / 2),
       decoration: BoxDecoration(
-        color: secondaryColor,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-        border: Border.all(color: Colors.white10)
-      ),
+          color: secondaryColor,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          border: Border.all(color: Colors.white10)),
       child: Row(
         children: [
           Image.asset(
-            'assets/images/profile_pic.png', 
+            'assets/images/profile_pic.png',
             height: 38,
           ),
-          if (!Responsive.isMobile(context))const Padding(
-            padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            child: Text('Angelina Joli')
-          ),
+          if (!Responsive.isMobile(context))
+            const Padding(
+                padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+                child: Text('Angelina Joli')),
           const Icon(Icons.keyboard_arrow_down)
         ],
       ),
@@ -74,26 +70,24 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        hintText: 'Search',
-        fillColor: secondaryColor,
-        filled: true,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(Radius.circular(10))
-        ),
-        suffixIcon: InkWell(
-          onTap: (){},
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: defaultPadding /2),
-            padding: const EdgeInsets.all(defaultPadding * 0.75),
-            decoration: const BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(10))
+          hintText: 'Search',
+          fillColor: secondaryColor,
+          filled: true,
+          border: const OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+          suffixIcon: InkWell(
+            onTap: () {},
+            child: Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+              padding: const EdgeInsets.all(defaultPadding * 0.75),
+              decoration: const BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              child: SvgPicture.asset('assets/icons/Search.svg'),
             ),
-            child: SvgPicture.asset('assets/icons/Search.svg'),
-          ),
-        )
-      ),
+          )),
     );
   }
 }
